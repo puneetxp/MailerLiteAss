@@ -19,8 +19,8 @@ export class FormDataService {
     this.httpheader = new HttpHeaders(header);
     return this;
   }
-  get<T>(url: string, json: Record<string, any> = {}) {
-    return this.reset().Req<T>("get", url + "?" + (new URLSearchParams(json).toString()));
+  get<T>(url: string, json?: Record<string, any>) {
+    return this.reset().Req<T>("get", url + (json && ("?" + (new URLSearchParams(json).toString())) || ''));
   }
   post<T>(url: string, json?: Record<string, any>) {
     return this.reset().Req<T>("post", url, json);

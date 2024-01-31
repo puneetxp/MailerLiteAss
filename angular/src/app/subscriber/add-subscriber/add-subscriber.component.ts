@@ -17,14 +17,13 @@ import { MatSelectModule } from '@angular/material/select';
   standalone: true,
   imports: [CommonModule, FormsModule, ReactiveFormsModule, HttpClientModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatSelectModule],
   providers: [FormDataService],
-
   templateUrl: './add-subscriber.component.html',
   styleUrl: './add-subscriber.component.scss'
 })
 export class AddSubscriberComponent {
   status: IStatus[] = []
   // = new MatTableDataSource<ISubscriber>([]);
-  constructor(private router: Router, private form: FormDataService) {
+  constructor(public router: Router, private form: FormDataService) {
     this.form.get<IStatus[]>(enviroment.url + "/api/ipublic/status").subscribe({
       next: (i) => {
         this.status = i;

@@ -10,10 +10,11 @@ import { Router, provideRouter } from '@angular/router';
 import { enviroment } from '../../env';
 import { FormDataService } from '../../shared/Service/Form/FormData.service';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatButton } from '@angular/material/button';
 @Component({
   selector: 'app-show-subscriber',
   standalone: true,
-  imports: [CommonModule, HttpClientModule, MatPaginatorModule, MatFormFieldModule, MatInputModule, MatTableModule, MatProgressSpinnerModule],
+  imports: [CommonModule, HttpClientModule, MatPaginatorModule, MatFormFieldModule, MatInputModule, MatTableModule, MatButton, MatProgressSpinnerModule],
   providers: [FormDataService],
   templateUrl: './show-subscriber.component.html',
   styleUrl: './show-subscriber.component.scss'
@@ -31,7 +32,7 @@ export class ShowSubscriberComponent {
   status: IStatus[] = []
   isLoadingResults: boolean = true;
   // = new MatTableDataSource<ISubscriber>([]);
-  constructor(private route: Router, private form: FormDataService) {
+  constructor(public route: Router, private form: FormDataService) {
     this.form.get<IStatus[]>(enviroment.url + "/api/ipublic/status").subscribe({
       next: (i) => {
         this.status = i;

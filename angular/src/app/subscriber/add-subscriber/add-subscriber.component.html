@@ -1,3 +1,4 @@
+<button (click)="router.navigateByUrl('/subscriber')" mat-raised-button color="primary">Back to Subcriber</button>
 <form [formGroup]="Form" (ngSubmit)="submit()">
   <div>
     <mat-form-field>
@@ -30,6 +31,7 @@
         <mat-option [value]="x.id" *ngFor="let x of status">{{x.name}}</mat-option>
       </mat-select>
     </mat-form-field>
+    <button (click)="router.navigateByUrl('/status')" mat-raised-button color="primary">Add Status</button>
   </div>
   <button mat-raised-button color="primary">Add</button>
 </form>

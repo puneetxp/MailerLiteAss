@@ -7,9 +7,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { enviroment } from '../../env';
 import { IStatus, ISubscriber } from '../../type';
-import { MatGridListModule } from '@angular/material/grid-list';
 import { Router } from '@angular/router';
-import { MatButton, MatButtonModule } from '@angular/material/button';
+import { MatButtonModule } from '@angular/material/button';
 import { FormDataService } from '../../shared/Service/Form/FormData.service';
 import { MatSelect, MatSelectModule } from '@angular/material/select';
 
@@ -27,7 +26,7 @@ export class EditSubscriberComponent implements OnInit {
   Form = UpdatesubscriberForm;
   status: IStatus[] = []
   // = new MatTableDataSource<ISubscriber>([]);
-  constructor(private router: Router, private form: FormDataService) {
+  constructor(public router: Router, private form: FormDataService) {
     this.form.get<IStatus[]>(enviroment.url + "/api/ipublic/status").subscribe({
       next: (i) => {
         this.status = i;

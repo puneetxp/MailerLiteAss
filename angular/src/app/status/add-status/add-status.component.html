@@ -1,0 +1,15 @@
+<button (click)="router.navigateByUrl('/subscriber')" mat-raised-button color="primary">Back to Subcriber</button>
+<mat-chip-set class="example-chip">
+  @for (x of status; track x) {
+  <mat-chip class="example-box">{{x.name}}</mat-chip>
+  }
+</mat-chip-set>
+<form [formGroup]="Form" (ngSubmit)="submit()">
+  <div>
+    <mat-form-field>
+      <mat-label>Name</mat-label>
+      <input name="name" matInput formControlName="name">
+    </mat-form-field>
+  </div>
+  <button mat-raised-button color="primary">Add</button>
+</form>

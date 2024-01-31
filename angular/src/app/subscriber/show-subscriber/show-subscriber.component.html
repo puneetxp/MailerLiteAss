@@ -1,4 +1,8 @@
 <div>
+  <button (click)="route.navigateByUrl('/subscriber/add')" mat-raised-button color="primary">Add</button>
+  <button (click)="route.navigateByUrl('/status')" mat-raised-button color="primary">Set Status</button>
+</div>
+<div>
   @if (isLoadingResults) {
   <div class="example-loading-shade">
     @if (isLoadingResults) {
