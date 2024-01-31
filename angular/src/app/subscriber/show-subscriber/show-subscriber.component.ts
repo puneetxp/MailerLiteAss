@@ -51,7 +51,8 @@ export class ShowSubscriberComponent {
     this.isLoadingResults = false;
   }
   handlePaginate(event: PageEvent) {
-    this.form.get<IPaginateSubscriber>(enviroment.url + "/api/ipublic/subscriber", { page: parseInt(this.pageNumber.toString()) + 1 }).subscribe({
+    console.log(event);
+    this.form.get<IPaginateSubscriber>(enviroment.url + "/api/ipublic/subscriber", { page: event.pageIndex + 1, pageItems: event.pageSize }).subscribe({
       next: (i: IPaginateSubscriber) => this.setpage(i)
     });
   }

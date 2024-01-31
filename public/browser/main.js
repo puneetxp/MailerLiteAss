@@ -61377,7 +61377,8 @@ var _ShowSubscriberComponent = class _ShowSubscriberComponent {
     this.isLoadingResults = false;
   }
   handlePaginate(event) {
-    this.form.get(enviroment.url + "/api/ipublic/subscriber", { page: parseInt(this.pageNumber.toString()) + 1 }).subscribe({
+    console.log(event);
+    this.form.get(enviroment.url + "/api/ipublic/subscriber", { page: event.pageIndex + 1, pageItems: event.pageSize }).subscribe({
       next: (i) => this.setpage(i)
     });
   }
