@@ -12,9 +12,6 @@ class IpublicSubscriberController
 
     public static function all()
     {
-        if (isset($_GET["page"])) {
-            return Subscriber::wherec([["updated_at", ">", $_GET["latest"]]])->get();
-        }
         return (new  Subscriber())->paginate()->getPage();
     }
 

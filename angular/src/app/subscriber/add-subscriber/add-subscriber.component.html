@@ -19,9 +19,17 @@
   </div>
   <div>
     <mat-form-field>
-      <mat-label for="phone">Email</mat-label>
+      <mat-label for="phone">Phone</mat-label>
       <input name="phone" matInput formControlName="phone">
     </mat-form-field>
   </div>
-  <button mat-raised-button color="primary">update</button>>
+  <div>
+    <mat-form-field>
+      <mat-label for="status">status</mat-label>
+      <mat-select formControlName="status_id">
+        <mat-option [value]="x.id" *ngFor="let x of status">{{x.name}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <button mat-raised-button color="primary">Add</button>
 </form>

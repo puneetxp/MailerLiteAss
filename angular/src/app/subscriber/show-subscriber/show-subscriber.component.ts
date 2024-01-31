@@ -1,18 +1,20 @@
 import { CommonModule } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { MatFormField, MatFormFieldModule } from '@angular/material/form-field';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatPaginator, MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatInputModule } from '@angular/material/input';
 import { IPaginateSubscriber, IStatus, ISubscriber } from '../../type';
-import { Route, Router } from '@angular/router';
+import { Router, provideRouter } from '@angular/router';
 import { enviroment } from '../../env';
-
+import { FormDataService } from '../../shared/Service/Form/FormData.service';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 @Component({
   selector: 'app-show-subscriber',
   standalone: true,
-  imports: [CommonModule, HttpClientModule, MatPaginatorModule, MatFormFieldModule, MatInputModule, MatTableModule],
+  imports: [CommonModule, HttpClientModule, MatPaginatorModule, MatFormFieldModule, MatInputModule, MatTableModule, MatProgressSpinnerModule],
+  providers: [FormDataService],
   templateUrl: './show-subscriber.component.html',
   styleUrl: './show-subscriber.component.scss'
 })
@@ -23,30 +25,35 @@ export class ShowSubscriberComponent {
   totalpages!: number
   get!: string;
   dataSource!: MatTableDataSource<ISubscriber, MatPaginator>
-  status: IStatus[] = []
   getstatus(id: number) {
-    return this.status.find(i => i.id == id);
+    return this.status.find(i => i.id == id)?.name || '';
   }
+  status: IStatus[] = []
+  isLoadingResults: boolean = true;
   // = new MatTableDataSource<ISubscriber>([]);
-  constructor(private route: Router, private http: HttpClient) {
-    this.http.get<IStatus[]>(enviroment.url + "/api/ipublic/status").subscribe({
+  constructor(private route: Router, private form: FormDataService) {
+    this.form.get<IStatus[]>(enviroment.url + "/api/ipublic/status").subscribe({
       next: (i) => {
         this.status = i;
       }
     });
 
-    this.http.get<IPaginateSubscriber>(enviroment.url + "/api/ipublic/subscriber").subscribe({
-      next: (i: IPaginateSubscriber) => {
-        this.dataSource = new MatTableDataSource(i.item);
-        this.result = i.result;
-        this.pageNumber = i.pageNumber;
-        this.totalpages = i.totalpages
-        this.get = i.get;
-      }
+    this.form.get<IPaginateSubscriber>(enviroment.url + "/api/ipublic/subscriber").subscribe({
+      next: (i: IPaginateSubscriber) => this.setpage(i)
     });
   }
+  setpage(i: IPaginateSubscriber) {
+    this.result = i.result;
+    this.pageNumber = i.pageNumber;
+    this.dataSource = new MatTableDataSource(i.item);
+    this.totalpages = i.totalpages
+    this.get = i.get;
+    this.isLoadingResults = false;
+  }
   handlePaginate(event: PageEvent) {
-    console.log(event);
+    this.form.get<IPaginateSubscriber>(enviroment.url + "/api/ipublic/subscriber", { page: parseInt(this.pageNumber.toString()) + 1 }).subscribe({
+      next: (i: IPaginateSubscriber) => this.setpage(i)
+    });
   }
   displayedColumns: string[] = ['id', 'name', 'email', 'phone', 'lastname', 'status_id'];
 

@@ -3,7 +3,7 @@ export const CreatesubscriberForm = new FormGroup({
   name: new FormControl('', [Validators.required]),
   lastname: new FormControl('', [Validators.required]),
   email: new FormControl('', [Validators.required, Validators.email]),
-  phone: new FormControl('', [Validators.required]),
+  phone: new FormControl('', [Validators.required, Validators.maxLength(20)]),
   status_id: new FormControl<string | null>(null, [Validators.required]),
 });
 export const UpdatesubscriberForm = new FormGroup({
@@ -11,6 +11,6 @@ export const UpdatesubscriberForm = new FormGroup({
   name: new FormControl('', [Validators.required]),
   lastname: new FormControl('', [Validators.required]),
   email: new FormControl('', [Validators.required, Validators.email]),
-  phone: new FormControl('', [Validators.required]),
+  phone: new FormControl('', [Validators.required, Validators.maxLength(20)]),
   status_id: new FormControl<number | null>(null, [Validators.required]),
 });
