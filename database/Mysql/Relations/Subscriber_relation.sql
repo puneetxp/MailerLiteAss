@@ -1,0 +1,1 @@
+ ALTER TABLE subscribers ADD KEY subscriber_status_id_foreign (`status_id`); ALTER TABLE subscribers ADD CONSTRAINT subscriber_status_id_foreign  FOREIGN KEY  (`status_id`) REFERENCES statuses (`id`);
