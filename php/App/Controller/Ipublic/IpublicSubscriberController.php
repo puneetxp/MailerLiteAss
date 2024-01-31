@@ -39,10 +39,7 @@ class IpublicSubscriberController
         return Subscriber::find($id);
     }
 
-    public static function upsert()
-    {
-        return Subscriber::upsert(json_decode($_POST["subscribers"]))->getsInserted();
-    }
+
 
     public static function delete($id)
     {

@@ -1,10 +1,10 @@
-<?php 
+<?php
 $route =array (
-  'GET' => 
+  'GET' =>
   array (
-    0 => 
+    0 =>
     array (
-      'handler' => 
+      'handler' =>
       array (
         0 =>  App\Controller\Ipublic\IpublicStatusController::class ,
         1 => 'all',
@@ -12,9 +12,9 @@ $route =array (
       'path' => 'api/ipublic/status',
       'n' => 3,
     ),
-    1 => 
+    1 =>
     array (
-      'handler' => 
+      'handler' =>
       array (
         0 =>  App\Controller\Ipublic\IpublicStatusController::class ,
         1 => 'show',
@@ -22,9 +22,9 @@ $route =array (
       'path' => 'api/ipublic/status/.+',
       'n' => 4,
     ),
-    2 => 
+    2 =>
     array (
-      'handler' => 
+      'handler' =>
       array (
         0 =>  App\Controller\Ipublic\IpublicSubscriberController::class ,
         1 => 'all',
@@ -32,9 +32,9 @@ $route =array (
       'path' => 'api/ipublic/subscriber',
       'n' => 3,
     ),
-    3 => 
+    3 =>
     array (
-      'handler' => 
+      'handler' =>
       array (
         0 =>  App\Controller\Ipublic\IpublicSubscriberController::class ,
         1 => 'show',
@@ -43,11 +43,11 @@ $route =array (
       'n' => 4,
     ),
   ),
-  'POST' => 
+  'POST' =>
   array (
-    0 => 
+    0 =>
     array (
-      'handler' => 
+      'handler' =>
       array (
         0 =>  App\Controller\Ipublic\IpublicStatusController::class ,
         1 => 'where',
@@ -55,9 +55,9 @@ $route =array (
       'path' => 'api/ipublic/status/where',
       'n' => 4,
     ),
-    1 => 
+    1 =>
     array (
-      'handler' => 
+      'handler' =>
       array (
         0 =>  App\Controller\Ipublic\IpublicStatusController::class ,
         1 => 'store',
@@ -65,9 +65,9 @@ $route =array (
       'path' => 'api/ipublic/status',
       'n' => 3,
     ),
-    2 => 
+    2 =>
     array (
-      'handler' => 
+      'handler' =>
       array (
         0 =>  App\Controller\Ipublic\IpublicSubscriberController::class ,
         1 => 'where',
@@ -75,9 +75,9 @@ $route =array (
       'path' => 'api/ipublic/subscriber/where',
       'n' => 4,
     ),
-    3 => 
+    3 =>
     array (
-      'handler' => 
+      'handler' =>
       array (
         0 =>  App\Controller\Ipublic\IpublicSubscriberController::class ,
         1 => 'store',
@@ -86,11 +86,11 @@ $route =array (
       'n' => 3,
     ),
   ),
-  'PATCH' => 
+  'PATCH' =>
   array (
-    0 => 
+    0 =>
     array (
-      'handler' => 
+      'handler' =>
       array (
         0 =>  App\Controller\Ipublic\IpublicStatusController::class ,
         1 => 'update',
@@ -98,9 +98,9 @@ $route =array (
       'path' => 'api/ipublic/status/.+',
       'n' => 4,
     ),
-    1 => 
+    1 =>
     array (
-      'handler' => 
+      'handler' =>
       array (
         0 =>  App\Controller\Ipublic\IpublicSubscriberController::class ,
         1 => 'update',
@@ -109,11 +109,11 @@ $route =array (
       'n' => 4,
     ),
   ),
-  'PUT' => 
+  'PUT' =>
   array (
-    0 => 
+    0 =>
     array (
-      'handler' => 
+      'handler' =>
       array (
         0 =>  App\Controller\Ipublic\IpublicStatusController::class ,
         1 => 'upsert',
@@ -121,9 +121,9 @@ $route =array (
       'path' => 'api/ipublic/status',
       'n' => 3,
     ),
-    1 => 
+    1 =>
     array (
-      'handler' => 
+      'handler' =>
       array (
         0 =>  App\Controller\Ipublic\IpublicSubscriberController::class ,
         1 => 'upsert',
@@ -132,11 +132,11 @@ $route =array (
       'n' => 3,
     ),
   ),
-  'DELETE' => 
+  'DELETE' =>
   array (
-    0 => 
+    0 =>
     array (
-      'handler' => 
+      'handler' =>
       array (
         0 =>  App\Controller\Ipublic\IpublicStatusController::class ,
         1 => 'delete',
@@ -144,9 +144,9 @@ $route =array (
       'path' => 'api/ipublic/status/.+',
       'n' => 4,
     ),
-    1 => 
+    1 =>
     array (
-      'handler' => 
+      'handler' =>
       array (
         0 =>  App\Controller\Ipublic\IpublicSubscriberController::class ,
         1 => 'delete',

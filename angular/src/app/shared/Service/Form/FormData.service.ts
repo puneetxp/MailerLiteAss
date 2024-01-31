@@ -1,15 +1,13 @@
-import { T } from '@angular/cdk/keycodes';
 import { HttpClient, HttpErrorResponse, HttpEvent, HttpEventType, HttpResponse } from '@angular/common/http';
 import { Injectable, NgModule } from '@angular/core';
 import { Observable, catchError, map, throwError } from 'rxjs';
-import { LoginService } from '../login.service';
 import { HttpHeaders } from '@angular/common/http';
 import { remove_empty } from '../../Function/Form';
 @Injectable({
   providedIn: 'root'
 })
 export class FormDataService {
-  constructor(public LoginService: LoginService, private http: HttpClient) {
+  constructor(private http: HttpClient) {
   }
   formData = new FormData();
   method = "POST";
@@ -65,7 +63,7 @@ export class FormDataService {
     }
     return this;
   }
-  Req<T>(method?: string, url?: string, json?: Record<string, any>, checklogin = true): Observable<T> {
+  Req<T>(method?: string, url?: string, json?: Record<string, any>): Observable<T> {
     method && (this.method = method);
     url && (this.action = url);
     json && this.Json(json);
@@ -76,14 +74,12 @@ export class FormDataService {
       observe: "response",
       headers: this.httpheader
     }).pipe(catchError((error: HttpErrorResponse): Observable<never> => {
-      if (checklogin) {
-        !(error.status == 401 || error.status == 403) && this.LoginService.logcheck();
-      }
+
       return throwError(() => { return error });
     }), map((i) => i.body as T));
   }
   ReqReport(): Observable<HttpEvent<Object>> {
-    //only for the php 
+    //only for the php
     this.php();
     return this.http.request(this.method, this.action, {
       body: this.formData,
@@ -91,7 +87,6 @@ export class FormDataService {
       observe: "events",
       reportProgress: true,
     }).pipe(catchError((error: HttpErrorResponse): Observable<never> => {
-      error.status !== 200 && this.LoginService.logcheck();
       return throwError(() => { return error });
     }));
   }

@@ -26,6 +26,10 @@ class Route
         $this->_method = $_SERVER['REQUEST_METHOD'];
         $this->_realUri = explode('/', $this->_uri);
         $this->_n = count($this->_realUri);
+        if (isset($_POST['_method'])) {
+            $this->_method = strtoupper($_POST['_method']);
+            unset($_POST['_method']);
+        }
     }
 
     public function run_route()

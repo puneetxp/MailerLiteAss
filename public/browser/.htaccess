@@ -1,6 +1,9 @@
 # For php
 
+RewriteEngine On
+RewriteRule ^api/(.*)$ /index.php [NC,L,QSA]
+
 RewriteEngine on
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^(.*) /index.php  [NC,L,QSA]
+RewriteRule ^(.*) /index.html  [NC,L,QSA]
