@@ -61461,29 +61461,48 @@ var UpdatesubscriberForm = new FormGroup({
 });
 
 // src/app/subscriber/edit-subscriber/edit-subscriber.component.ts
+function EditSubscriberComponent_mat_option_26_Template(rf, ctx) {
+  if (rf & 1) {
+    \u0275\u0275elementStart(0, "mat-option", 12);
+    \u0275\u0275text(1);
+    \u0275\u0275elementEnd();
+  }
+  if (rf & 2) {
+    const x_r1 = ctx.$implicit;
+    \u0275\u0275property("value", x_r1.id);
+    \u0275\u0275advance();
+    \u0275\u0275textInterpolate(x_r1.name);
+  }
+}
 var _EditSubscriberComponent = class _EditSubscriberComponent {
+  // = new MatTableDataSource<ISubscriber>([]);
+  constructor(router, form) {
+    this.router = router;
+    this.form = form;
+    this.url = "/api/ipublic/subscriber/";
+    this.Form = UpdatesubscriberForm;
+    this.status = [];
+    this.form.get(enviroment.url + "/api/ipublic/status").subscribe({
+      next: (i) => {
+        this.status = i;
+      }
+    });
+  }
   ngOnInit() {
-    this.http.get(enviroment.url + this.url + this.id).subscribe((i) => {
+    this.form.get(enviroment.url + this.url + this.id).subscribe((i) => {
       this.Form.setValue(i);
     });
   }
-  constructor(formData, router, http) {
-    this.formData = formData;
-    this.router = router;
-    this.http = http;
-    this.url = "/api/ipublic/subscriber/";
-    this.Form = UpdatesubscriberForm;
-  }
   submit() {
-    this.formData.patch(enviroment.url + this.url + this.id, this.Form.value).subscribe((i) => {
+    this.form.patch(enviroment.url + this.url + this.id, this.Form.value).subscribe((i) => {
       this.router.navigateByUrl("");
     });
   }
 };
 _EditSubscriberComponent.\u0275fac = function EditSubscriberComponent_Factory(t) {
-  return new (t || _EditSubscriberComponent)(\u0275\u0275directiveInject(FormDataService), \u0275\u0275directiveInject(Router), \u0275\u0275directiveInject(HttpClient));
+  return new (t || _EditSubscriberComponent)(\u0275\u0275directiveInject(Router), \u0275\u0275directiveInject(FormDataService));
 };
-_EditSubscriberComponent.\u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _EditSubscriberComponent, selectors: [["app-edit-subscriber"]], inputs: { id: "id" }, standalone: true, features: [\u0275\u0275ProvidersFeature([FormDataService]), \u0275\u0275StandaloneFeature], decls: 23, vars: 1, consts: [[3, "formGroup", "ngSubmit"], ["name", "name", "matInput", "", "formControlName", "name"], ["for", "lastname"], ["name", "lastname", "matInput", "", "formControlName", "lastname"], ["for", "email"], ["name", "email", "matInput", "", "formControlName", "email"], ["for", "phone"], ["name", "phone", "matInput", "", "formControlName", "phone"], ["mat-raised-button", "", "color", "primary"]], template: function EditSubscriberComponent_Template(rf, ctx) {
+_EditSubscriberComponent.\u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _EditSubscriberComponent, selectors: [["app-edit-subscriber"]], inputs: { id: "id" }, standalone: true, features: [\u0275\u0275ProvidersFeature([FormDataService]), \u0275\u0275StandaloneFeature], decls: 29, vars: 2, consts: [[3, "formGroup", "ngSubmit"], ["name", "name", "matInput", "", "formControlName", "name"], ["for", "lastname"], ["name", "lastname", "matInput", "", "formControlName", "lastname"], ["for", "email"], ["name", "email", "matInput", "", "formControlName", "email"], ["for", "phone"], ["name", "phone", "matInput", "", "formControlName", "phone"], ["for", "status"], ["formControlName", "status_id"], [3, "value", 4, "ngFor", "ngForOf"], ["mat-raised-button", "", "color", "primary"], [3, "value"]], template: function EditSubscriberComponent_Template(rf, ctx) {
   if (rf & 1) {
     \u0275\u0275elementStart(0, "form", 0);
     \u0275\u0275listener("ngSubmit", function EditSubscriberComponent_Template_form_ngSubmit_0_listener() {
@@ -61509,17 +61528,25 @@ _EditSubscriberComponent.\u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent
     \u0275\u0275elementEnd();
     \u0275\u0275element(20, "input", 7);
     \u0275\u0275elementEnd()();
-    \u0275\u0275elementStart(21, "button", 8);
-    \u0275\u0275text(22, "update");
+    \u0275\u0275elementStart(21, "div")(22, "mat-form-field")(23, "mat-label", 8);
+    \u0275\u0275text(24, "status");
+    \u0275\u0275elementEnd();
+    \u0275\u0275elementStart(25, "mat-select", 9);
+    \u0275\u0275template(26, EditSubscriberComponent_mat_option_26_Template, 2, 2, "mat-option", 10);
+    \u0275\u0275elementEnd()()();
+    \u0275\u0275elementStart(27, "button", 11);
+    \u0275\u0275text(28, "update");
     \u0275\u0275elementEnd()();
   }
   if (rf & 2) {
     \u0275\u0275property("formGroup", ctx.Form);
+    \u0275\u0275advance(26);
+    \u0275\u0275property("ngForOf", ctx.status);
   }
-}, dependencies: [CommonModule, FormsModule, \u0275NgNoValidate, DefaultValueAccessor, NgControlStatus, NgControlStatusGroup, ReactiveFormsModule, FormGroupDirective, FormControlName, HttpClientModule, MatFormFieldModule, MatFormField, MatLabel, MatInputModule, MatInput, MatButtonModule, MatButton], styles: ["\n\n/*# sourceMappingURL=edit-subscriber.component.css.map */"] });
+}, dependencies: [CommonModule, NgForOf, FormsModule, \u0275NgNoValidate, DefaultValueAccessor, NgControlStatus, NgControlStatusGroup, ReactiveFormsModule, FormGroupDirective, FormControlName, HttpClientModule, MatFormFieldModule, MatFormField, MatLabel, MatInputModule, MatInput, MatButtonModule, MatButton, MatSelectModule, MatSelect, MatOption], styles: ["\n\n/*# sourceMappingURL=edit-subscriber.component.css.map */"] });
 var EditSubscriberComponent = _EditSubscriberComponent;
 (() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(EditSubscriberComponent, { className: "EditSubscriberComponent", filePath: "src/app/subscriber/edit-subscriber/edit-subscriber.component.ts", lineNumber: 23 });
+  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(EditSubscriberComponent, { className: "EditSubscriberComponent", filePath: "src/app/subscriber/edit-subscriber/edit-subscriber.component.ts", lineNumber: 24 });
 })();
 
 // src/app/subscriber/add-subscriber/add-subscriber.component.ts
